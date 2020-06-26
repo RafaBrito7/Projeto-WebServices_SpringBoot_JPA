@@ -2,6 +2,10 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 
+/* 
+ * Usamos o serializable quando queremos que nossos objetos sejam transformados em cadeias de bytes
+ * para que possa trafegar na rede e possa ser gravado em arquivos
+*/
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
