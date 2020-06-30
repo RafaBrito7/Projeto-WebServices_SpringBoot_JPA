@@ -1,17 +1,22 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /* 
  * Usamos o serializable quando queremos que nossos objetos sejam transformados em cadeias de bytes
  * para que possa trafegar na rede e possa ser gravado em arquivos
 */
 @Entity // Fazer a classe dependendo da Especificação(javax) e não da Implementação
+@Table(name = "tb_user") // Para informar que o user é uma tabela
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -22,6 +27,9 @@ public class User implements Serializable{
 	private String email;
 	private String phone;
 	private String password;
+	
+	@OneToMany(mappedBy = "client") // Informando onde está a FK
+	private List<Order> orders = new ArrayList<>();
 	
 	public User() {
 	}
@@ -73,6 +81,10 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public List<Order> getOrders() {
+		return orders;
+	}
 
 	@Override
 	public int hashCode() {
@@ -98,6 +110,5 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }
