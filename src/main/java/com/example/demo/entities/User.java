@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /* 
  * Usamos o serializable quando queremos que nossos objetos sejam transformados em cadeias de bytes
  * para que possa trafegar na rede e possa ser gravado em arquivos
@@ -28,6 +30,7 @@ public class User implements Serializable{
 	private String phone;
 	private String password;
 	
+	@JsonIgnore //Evitar um loop entre User e Order
 	@OneToMany(mappedBy = "client") // Informando onde está a FK
 	private List<Order> orders = new ArrayList<>();
 	

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "tb_order") // Para informar que a Order é uma tabela
 public class Order implements Serializable{
@@ -18,7 +20,10 @@ public class Order implements Serializable{
 	
 	@Id // Apontando para o JPA quem é minha PrimaryKey
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Dizendo que a PK é auto incrementável
-	private long id;
+	private Long id;
+	
+	// Formatando para que o Instant seja mostrado no JSON na formatação passada abaixo
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 	
 	@ManyToOne // Chave Estrangeira
@@ -28,17 +33,17 @@ public class Order implements Serializable{
 	public Order() {
 	}
 
-	public Order(long id, Instant moment, User client) {
+	public Order(Long id, Instant moment, User client) {
 		this.id = id;
 		this.moment = moment;
 		this.client = client;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
