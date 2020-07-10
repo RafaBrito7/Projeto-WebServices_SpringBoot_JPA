@@ -1,0 +1,11 @@
+postgres://
+
+fezzdufuufsopn
+
+103124d334c207c6e7fa3de6f5ebeae01b0102baf5a9d001979885242abc436d
+
+ec2-34-233-226-84.compute-1.amazonaws.com
+
+5432
+
+df34a39g4opc58
